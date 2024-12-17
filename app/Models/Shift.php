@@ -12,5 +12,10 @@ class Shift extends Model
         'name',
         'start_time',
         'end_time',
-    ] ;
+    ];
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
 }

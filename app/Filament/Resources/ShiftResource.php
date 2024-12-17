@@ -3,7 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ShiftResource\Pages;
-use App\Filament\Resources\ShiftResource\RelationManagers;
+use App\Filament\Resources\Depa\RelationManagers;
+use App\Filament\Resources\DepartmentResourceeResource\RelationManagers\EmployeesRelationManager;
 use App\Models\Shift;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -75,7 +76,7 @@ class ShiftResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            EmployeesRelationManager::class,
         ];
     }
 

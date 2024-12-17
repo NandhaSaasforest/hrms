@@ -31,7 +31,6 @@ class EmployeesRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('first_name'),
                 Tables\Columns\TextColumn::make('last_name'),
                 Tables\Columns\TextColumn::make('shift.name'),
-                Tables\Columns\TextColumn::make('salary'),
             ])
             ->filters([
                 //
