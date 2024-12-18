@@ -14,15 +14,15 @@ class EmployeesRelationManager extends RelationManager
 {
     protected static string $relationship = 'employees';
 
-    public function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('department_id')
-                    ->required()
-                    ->maxLength(255),
-            ]);
-    }
+    // public function form(Form $form): Form
+    // {
+    //     return $form
+    //         ->schema([
+    //             Forms\Components\Select::make('department_id')
+    //                 ->relationship('department', 'name')
+    //                 ->required(),
+    //         ]);
+    // }
 
     public function table(Table $table): Table
     {
@@ -36,10 +36,10 @@ class EmployeesRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                // Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                // Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
