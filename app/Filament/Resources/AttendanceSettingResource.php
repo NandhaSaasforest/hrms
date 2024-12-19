@@ -25,11 +25,11 @@ class AttendanceSettingResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('total_working_hours')
+                Forms\Components\TimePicker::make('total_working_hours')
                     ->required()
                     ->label('Total Working Hours')
                     ->helperText('Define the total working hours required per day.'),
-                Forms\Components\TextInput::make('lunch_hours')
+                Forms\Components\TimePicker::make('lunch_hours')
                     ->required()
                     ->label('Lunch Hours')
                     ->helperText('Specify the allocated time for lunch.'),
@@ -83,7 +83,7 @@ class AttendanceSettingResource extends Resource
     {
         return [
             'index' => Pages\ListAttendanceSettings::route('/'),
-            'create' => Pages\CreateAttendanceSetting::route('/create'),
+            // 'create' => Pages\CreateAttendanceSetting::route('/create'),
             'edit' => Pages\EditAttendanceSetting::route('/{record}/edit'),
         ];
     }

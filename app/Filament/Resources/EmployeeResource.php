@@ -51,6 +51,7 @@ class EmployeeResource extends Resource
 
                         Forms\Components\Textarea::make('address')
                             ->label('Address')
+                            ->maxLength(65534)
                             ->helperText('Optional: Provide the employee\'s address.'),
                     ]),
                 Forms\Components\Section::make('Employment Information')
@@ -99,6 +100,9 @@ class EmployeeResource extends Resource
                 Tables\Columns\TextColumn::make('phone')
                     ->label('Phone')
                     ->searchable(),
+                // Tables\Columns\TextColumn::make('address')
+                //     ->label('Address')
+                //     ->toggleable(),
                 Tables\Columns\TextColumn::make('department.name')
                     ->label('Department')
                     ->numeric()

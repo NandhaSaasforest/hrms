@@ -35,6 +35,7 @@ class DepartmentResource extends Resource
                     ->helperText('Provide a brief description of the department.')
                     ->rows(3)
                     ->nullable()
+                    ->maxLength(65534)
                     ->columnSpanFull(),
             ]);
     }

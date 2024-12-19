@@ -31,6 +31,7 @@ class EmployeesRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('first_name'),
                 Tables\Columns\TextColumn::make('last_name'),
                 Tables\Columns\TextColumn::make('shift.name'),
+                Tables\Columns\TextColumn::make('phone'),
             ])
             ->filters([
                 //
@@ -40,7 +41,7 @@ class EmployeesRelationManager extends RelationManager
             ])
             ->actions([
                 // Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                // Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

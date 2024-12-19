@@ -45,6 +45,7 @@ class HolidayResource extends Resource
                     ->required(),
                 Forms\Components\Textarea::make('description')
                     ->label('Description')
+                    ->maxLength(65534)
                     ->helperText('Provide a description for the holiday (optional).')
                     ->nullable()
                     ->columnSpanFull(),
