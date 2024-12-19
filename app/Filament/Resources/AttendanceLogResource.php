@@ -35,9 +35,9 @@ class AttendanceLogResource extends Resource
                 Forms\Components\TimePicker::make('login_time')
                     ->required(),
                 Forms\Components\TimePicker::make('logout_time'),
-                Forms\Components\Toggle::make('status')
-                    ->label('Status (In / Out)')
-                    ->required(),
+                // Forms\Components\Toggle::make('status')
+                //     ->label('Status (In / Out)')
+                //     ->required(),
             ]);
     }
 
@@ -53,7 +53,7 @@ class AttendanceLogResource extends Resource
                 Tables\Columns\TextColumn::make('date')->sortable()->date(),
                 Tables\Columns\TextColumn::make('login_time'),
                 Tables\Columns\TextColumn::make('logout_time'),
-                Tables\Columns\IconColumn::make('status')->boolean(),
+                // Tables\Columns\IconColumn::make('status')->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

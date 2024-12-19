@@ -15,7 +15,7 @@ class AttendanceLog extends Model
         'login_time',
         'logout_time',
         'date',
-        'status',
+        // 'status',
     ];
 
     public function employee()

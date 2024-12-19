@@ -32,7 +32,7 @@ class AttendancelogRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('date')->sortable()->date(),
                 Tables\Columns\TextColumn::make('login_time'),
                 Tables\Columns\TextColumn::make('logout_time'),
-                Tables\Columns\IconColumn::make('status')->boolean(),
+                // Tables\Columns\IconColumn::make('status')->boolean(),
             ])
             ->filters([
                 //

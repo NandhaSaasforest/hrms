@@ -19,7 +19,7 @@ return new class extends Migration
             $table->time('login_time')->required();
             $table->time('logout_time')->nullable();
             $table->date('date')->required();
-            $table->boolean('status')->required()->default(false);
+            // $table->boolean('status')->required()->default(false);
             $table->timestamps();
         });
     }

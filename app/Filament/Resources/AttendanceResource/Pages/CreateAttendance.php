@@ -8,6 +8,7 @@ use App\Models\AttendanceSetting;
 use Carbon\Carbon;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use phpDocumentor\Reflection\Types\Null_;
 
 class CreateAttendance extends CreateRecord
 {
@@ -28,12 +29,12 @@ class CreateAttendance extends CreateRecord
 
         [$lhours, $lminutes] = explode(':', $loginTime->toTimeString());
 
-        $total_working_hours = $totalWorkingMin < 0 ? 0 : ($totalWorkingMin / 60) - ($lunchHours + $lunchMinutes);
+        $total_working_hours = $totalWorkingMin < 0 ? 0 : max(($totalWorkingMin / 60) - ($lunchHours + $lunchMinutes), 0);
         $overtime_hours = $totalWorkingMin > $minimumWorkingMinutes
             ? ($totalWorkingMin - $minimumWorkingMinutes) / 60
             : 0;
-        $late_login = (int)$lhours > 9 ? true : false;
-        $early_checkout = $totalWorkingMin < $minimumWorkingMinutes ? true : false;
+        $late_login = (int)$lhours + ((int)$lminutes / 60) > 9.25 ? true : false;
+        $early_checkout = $totalWorkingMin < 0 ? false : ($totalWorkingMin < $minimumWorkingMinutes ? true : false);
 
 
 
@@ -44,7 +45,7 @@ class CreateAttendance extends CreateRecord
             'total_working_hours' => $total_working_hours,
             'overtime_hours' => $overtime_hours,
             'date' => $data['date'],
-            'status' => $data['status'],
+            // 'status' => $data['status'],
             'late_login' => $late_login,
             'early_checkout' => $early_checkout,
         ]);
@@ -54,7 +55,7 @@ class CreateAttendance extends CreateRecord
             'login_time' => $attendance->login_time,
             'logout_time' => $attendance->logout_time,
             'date' => $attendance->date,
-            'status' => $data['status'],
+            // 'status' => $data['status'],
         ]);
 
 

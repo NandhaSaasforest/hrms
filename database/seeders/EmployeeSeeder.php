@@ -17,9 +17,10 @@ class EmployeeSeeder extends Seeder
             [
                 'first_name' => 'John',
                 'last_name' => ' Deuv',
-                'email' => 'asd@gmail.com',
-                'phone' => '1234123',
+                'email' => 'john@gmail.com',
+                'phone' => '1234',
                 'department_id' => '1',
+                'is_manager' => '1',
                 'shift_id' => '2',
                 'salary' => '12342',
                 'employment_date' => '2024-12-03',

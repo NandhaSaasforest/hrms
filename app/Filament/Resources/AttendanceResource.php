@@ -54,8 +54,10 @@ class AttendanceResource extends Resource
                     ->required(),
                 Forms\Components\TimePicker::make('login_time')
                     ->required(),
-                Forms\Components\TimePicker::make('logout_time'),
-                Forms\Components\Toggle::make('status')->label('Status'),
+                Forms\Components\TimePicker::make('logout_time')->after('login_time')->validationMessages([
+                    'after' => 'Logout Later.',
+                ]),
+                // Forms\Components\Toggle::make('status')->label('Status'),
             ]);
     }
 

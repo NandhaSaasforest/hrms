@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('date')->required();
             $table->time('login_time')->required();
             $table->time('logout_time')->nullable();
-            $table->boolean('status')->required()->default(false);
+            // $table->boolean('status')->required()->default(false);
             $table->boolean('late_login')->default(false);
             $table->boolean('early_checkout')->default(false);
             $table->integer('total_working_hours');

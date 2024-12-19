@@ -30,7 +30,6 @@ class HolidayResource extends Resource
                     ->rules([
                         fn(Get $get , $operation): Closure => function (string $attribute, $value, Closure $fail) use ($get, $operation) {
                            $holidayId = $get('id'); // Get the current record ID (for edit cases)
-                        //    dump($holidayId);
 
                             $exists = Holiday::where('holiday_date', $value)
                                 ->when($operation=='edit', fn($query) => $query->where('id', '!=', $holidayId))

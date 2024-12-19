@@ -26,7 +26,7 @@ class EditAttendance extends EditRecord
         $record->login_time = $data['login_time'] ?? $record->login_time;
         $record->logout_time = $data['logout_time'] ?? $record->logout_time;
         $record->date = $data['date'] ?? $record->date; // Update date if provided
-        $record->status = $data['status'] ?? $record->status;
+        // $record->status = $data['status'] ?? $record->status;
 
         // Recalculate metrics
         $loginTime = Carbon::create($record->login_time);
@@ -39,7 +39,7 @@ class EditAttendance extends EditRecord
 
         [$lhours, $lminutes] = explode(':', $loginTime->toTimeString());
 
-        $total_working_hours = $totalWorkingMin < 0 ? 0 : ($totalWorkingMin / 60) - ($lunchHours + $lunchMinutes);
+        $total_working_hours = $totalWorkingMin < 0 ? 0 : max(($totalWorkingMin / 60) - ($lunchHours + $lunchMinutes), 0);
         $overtime_hours = $totalWorkingMin > $minimumWorkingMinutes
             ? ($totalWorkingMin - $minimumWorkingMinutes) / 60
             : 0;
@@ -53,7 +53,7 @@ class EditAttendance extends EditRecord
             'total_working_hours' => $total_working_hours,
             'overtime_hours' => $overtime_hours,
             'late_login' => $late_login,
-            'early_checkout'=> $early_checkout,
+            'early_checkout' => $early_checkout,
         ]);
 
         // Update related attendance data

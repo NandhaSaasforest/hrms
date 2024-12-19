@@ -13,7 +13,7 @@ class Attendance extends Model
         'date',
         'login_time',
         'logout_time',
-        'status',
+        // 'status',
         'late_login',
         'early_checkout',
         'total_working_hours',
@@ -35,5 +35,4 @@ class Attendance extends Model
     {
         return $this->belongsTo(Attendance::class);
     }
-
 }
