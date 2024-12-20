@@ -21,6 +21,8 @@ use Psy\Command\WhereamiCommand;
 
 class LeaveRequestResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Holidays';
+
     protected static ?string $model = LeaveRequest::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-envelope';

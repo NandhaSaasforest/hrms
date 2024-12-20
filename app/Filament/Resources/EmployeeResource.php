@@ -82,6 +82,11 @@ class EmployeeResource extends Resource
                             ->numeric()
                             ->label('Base Salary')
                             ->helperText('Enter the employee\'s base salary.'),
+                        Forms\Components\TextInput::make('pf_contribution')
+                            ->maxValue(100)
+                            ->numeric()
+                            ->label('PF Amount')
+                            ->helperText('Enter the employee\'s PF contribution amount.'),
                     ]),
 
             ]);
@@ -93,8 +98,8 @@ class EmployeeResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('first_name')
                     ->label('First Name')
-                    ->color(fn ($record) => $record->is_manager ? 'highlight' : 'default')
-                    ->extraAttributes(fn ($record) => $record->is_manager ? ['class' => 'font-bold'] : [])
+                    ->color(fn($record) => $record->is_manager ? 'highlight' : 'default')
+                    ->extraAttributes(fn($record) => $record->is_manager ? ['class' => 'font-bold'] : [])
                     ->searchable(),
                 Tables\Columns\TextColumn::make('last_name')
                     ->label('Last Name')
@@ -119,6 +124,11 @@ class EmployeeResource extends Resource
                 Tables\Columns\TextColumn::make('salary')
                     ->label('Salary')
                     ->money('USD')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('pf_contribution')
+                    ->label('PF contribution')
+                    ->formatStateUsing(fn($state): string => $state . '%')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('employment_date')

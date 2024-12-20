@@ -80,7 +80,7 @@ class AttendanceResource extends Resource
                 Tables\Columns\IconColumn::make('early_checkout')
                     ->label('Early Checkout')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('total_working_hours')->label('Total Worked Hours')->formatStateUsing(fn($state): string => $state . 'hrs'),
+                Tables\Columns\TextColumn::make('total_working_hours')->label('Total Worked Hours')->formatStateUsing(callback: fn($state): string => $state . 'hrs'),
                 Tables\Columns\TextColumn::make('overtime_hours')->formatStateUsing(fn($state): string => $state . 'hrs'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

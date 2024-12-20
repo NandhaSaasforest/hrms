@@ -22,7 +22,8 @@ class EmployeeSeeder extends Seeder
                 'department_id' => '1',
                 'is_manager' => '1',
                 'shift_id' => '2',
-                'salary' => '12342',
+                'salary' => '10000',
+                'pf_contribution'=> '10',
                 'employment_date' => '2024-12-03',
                 'address' => 'asdfghj'
             ],
@@ -33,7 +34,8 @@ class EmployeeSeeder extends Seeder
                 'phone' => '1234233',
                 'department_id' => '1',
                 'shift_id' => '2',
-                'salary' => '12342',
+                'salary' => '10000',
+                'pf_contribution'=> '10',
                 'employment_date' => '2024-12-03',
                 'address' => 'asdfghsdfj'
             ],
@@ -44,7 +46,8 @@ class EmployeeSeeder extends Seeder
                 'phone' => '45674233',
                 'department_id' => '3',
                 'shift_id' => '1',
-                'salary' => '12342',
+                'salary' => '10000',
+                'pf_contribution'=> '10',
                 'employment_date' => '2024-12-06',
                 'address' => 'asdfghqwdsfgsdfj'
             ],
@@ -55,7 +58,8 @@ class EmployeeSeeder extends Seeder
                 'phone' => '9874233',
                 'department_id' => '1',
                 'shift_id' => '3',
-                'salary' => '52342',
+                'salary' => '10000',
+                'pf_contribution'=> '10',
                 'employment_date' => '2024-12-08',
                 'address' => 'asdfsdfghjkghsdfj'
             ],
@@ -66,7 +70,8 @@ class EmployeeSeeder extends Seeder
                 'phone' => '1234287',
                 'department_id' => '3',
                 'shift_id' => '2',
-                'salary' => '12342',
+                'salary' => '10000',
+                'pf_contribution'=> '10',
                 'employment_date' => '2024-12-02',
                 'address' => 'asdfghsdkjhgffj'
             ]

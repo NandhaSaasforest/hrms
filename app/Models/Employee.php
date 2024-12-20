@@ -20,6 +20,7 @@ class Employee extends Model
         'is_manager',
         'shift_id',
         'salary',
+        'pf_contribution',
         'employment_date',
         'address',
     ];
@@ -55,5 +56,10 @@ class Employee extends Model
     public function shift()
     {
         return $this->belongsTo(Shift::class);
+    }
+
+    public function allowances()
+    {
+        return $this->belongsToMany(Allowance::class, 'allowance_employee')->withTimestamps();
     }
 }

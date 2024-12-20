@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean('is_manager')->nullable();
             $table->unsignedBigInteger('shift_id')->nullable();
             $table->decimal('salary', 10, 2);
+            $table->integer('pf_contribution')->nullable();
             $table->date('employment_date');
             $table->text('address')->nullable();
             $table->timestamps();
