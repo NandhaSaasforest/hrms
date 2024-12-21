@@ -6,6 +6,8 @@ use App\Filament\Resources\AttendanceResource\Pages;
 use App\Filament\Resources\AttendanceResource\RelationManagers;
 use App\Filament\Resources\AttendanceResource\RelationManagers\AttendancelogRelationManager;
 use App\Models\Attendance;
+use App\Models\Holiday;
+use App\Models\LeaveRequest;
 use Closure;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -44,6 +46,17 @@ class AttendanceResource extends Resource
                             if ($duplicateQuery->exists()) {
                                 $fail('The selected employee already has an attendance record for this date.');
                             }
+
+                            // Check if the date is a leave date for the employee
+                            $isLeaveDate = LeaveRequest::where('employee_id', $value)
+                                ->whereDate('leave_date', $date)
+                                // ->whereDate('end_date', '>=', $date)
+                                ->exists();
+
+                            if ($isLeaveDate) {
+                                $fail('The selected date is within the employee\'s leave period.');
+                                return;
+                            }
                         },
                     ])
                     ->validationMessages([
@@ -51,6 +64,18 @@ class AttendanceResource extends Resource
                     ]),
                 Forms\Components\DatePicker::make('date')
                     ->label('Date')
+                    ->rules([
+                        fn(Get $get): Closure => function (string $attribute, $value, Closure $fail) use ($get) {
+                            $date = $get('date'); // Assume 'date' is also part of the form
+                            // Check if the date is a holiday
+                            $isHoliday = Holiday::whereDate('holiday_date', $date)->exists();
+                            if ($isHoliday) {
+                                $fail('The selected date is a holiday.');
+                                return;
+                            }
+                        }
+                    ])
+
                     ->required(),
                 Forms\Components\TimePicker::make('login_time')
                     ->required(),
