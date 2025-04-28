@@ -51,6 +51,7 @@ class EmployeeResource extends Resource
 
                         Forms\Components\Textarea::make('address')
                             ->label('Address')
+                            ->maxLength(65534)
                             ->helperText('Optional: Provide the employee\'s address.'),
                     ]),
                 Forms\Components\Section::make('Employment Information')
@@ -60,6 +61,9 @@ class EmployeeResource extends Resource
                             ->relationship('department', 'name')
                             ->label('Department')
                             ->helperText('Select the department for the employee.'),
+                        Forms\Components\Toggle::make('is_manager')
+                            ->label('Manager')
+                            ->helperText('Are you the manager?'),
                         Forms\Components\Select::make('shift_id')
                             ->relationship('shift', 'name')
                             ->nullable()
@@ -78,6 +82,11 @@ class EmployeeResource extends Resource
                             ->numeric()
                             ->label('Base Salary')
                             ->helperText('Enter the employee\'s base salary.'),
+                        Forms\Components\TextInput::make('pf_contribution')
+                            ->maxValue(100)
+                            ->numeric()
+                            ->label('PF Amount')
+                            ->helperText('Enter the employee\'s PF contribution amount.'),
                     ]),
 
             ]);
@@ -89,6 +98,8 @@ class EmployeeResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('first_name')
                     ->label('First Name')
+                    ->color(fn($record) => $record->is_manager ? 'highlight' : 'default')
+                    ->extraAttributes(fn($record) => $record->is_manager ? ['class' => 'font-bold'] : [])
                     ->searchable(),
                 Tables\Columns\TextColumn::make('last_name')
                     ->label('Last Name')
@@ -99,6 +110,9 @@ class EmployeeResource extends Resource
                 Tables\Columns\TextColumn::make('phone')
                     ->label('Phone')
                     ->searchable(),
+                // Tables\Columns\TextColumn::make('address')
+                //     ->label('Address')
+                //     ->toggleable(),
                 Tables\Columns\TextColumn::make('department.name')
                     ->label('Department')
                     ->numeric()
@@ -110,6 +124,11 @@ class EmployeeResource extends Resource
                 Tables\Columns\TextColumn::make('salary')
                     ->label('Salary')
                     ->money('USD')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('pf_contribution')
+                    ->label('PF contribution')
+                    ->formatStateUsing(fn($state): string => $state . '%')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('employment_date')
@@ -127,6 +146,7 @@ class EmployeeResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            // ->rowClasses(fn ($record) => $record->is_manager ? 'bg-green-100' : '')
             ->filters([
                 //
             ])
@@ -138,7 +158,7 @@ class EmployeeResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])->defaultSort('is_manager', 'desc');
     }
 
     public static function getRelations(): array
